@@ -27,7 +27,7 @@ git clone https://github.com/oAlex03ol/HCCF-NET.git
 ```bash
 cd HCCF-NET
 ```
-3. Install all dependencies from `package.json` with `npm` (Node.js tool).
+3. Install all dependencies from `package.json` with `npm` ([Node.js](https://nodejs.org/en) tool).
 ```bash
 npm install  # Don't worry, npm will install everything as instructed in the package.json
 ```
