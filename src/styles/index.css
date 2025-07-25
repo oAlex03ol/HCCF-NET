@@ -36,20 +36,25 @@
   -webkit-font-smoothing: antialiased; /*提升 mac 上的字型渲染銳利度*/
   -moz-osx-font-smoothing: grayscale; /*Firefox/macOS 字體平滑設定*/
 
-  /*顏色變數通常設定在這邊*/
-}
+  /*全域顏色、字體樣式變數通常設定在這邊*/
+  /*可輕鬆應用於 margin 或 padding 避免日後需依次修改各個元素*/
+  --spacing1: 4px;
+  --spacing2: 8px;
+  --spacing3: 16px;
+  --spacing4: 20px;
+  --spacing5: 40px;
+  --spacing6: 80px;
+  --spacing7: 160px;
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --f1: "Noto Sans JP", serif;
+  --f2: "Fira Sans", serif ;
+  --p: 1rem/1.5em var(--f1);
+  --h1: 600 3rem/1.2em var(--f2);
+  --h2: 600 2rem/1.2em var(--f2);
 }
 
 body {
-  margin: 0;
+  margin: 0; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,6 +65,15 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
 }
 
 button {
@@ -81,6 +95,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/*當系統為明亮模式時套用，需放在欲覆蓋元素樣式之後*/
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
