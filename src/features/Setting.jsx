@@ -1,0 +1,1 @@
+// SettingPanel.jsx

@@ -1,0 +1,128 @@
+/* Header 主要容器 */
+.site-header {
+    position: fixed; /* 讓 Header 固定在畫面頂端 */
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    min-width: max-content;
+    padding: var(--spacing1);
+    height: 4rem; /* rem 相較於 root 比例 , em 相較於 父元素 比例*/
+    background-color: #1f2937;
+    color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /*  陰影水平位移, 陰影垂直位移, 模糊半徑, 顏色及透明度 */
+    justify-content:  space-between; /* 兩側貼齊，中間自動留空 */
+    align-items: center; /*	垂直方向置中 */
+    user-select: none; /* 防止元素或文字被滑鼠選中 */
+    opacity: 0.9;
+}
+
+/* Header 文字選項容器 */
+.site-header > ul {
+    display: flex;
+    min-width: max-content;
+    margin: var(--spacing2) var(--spacing4);
+    gap: var(--spacing5);
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* 文字選項外框 */
+.site-header ul li {
+    /*border: 2px solid red;*/
+}
+
+/* Header 文字選項 */
+.site-header ul a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1rem;
+    /*代修改*/transition: color 0.2s ;
+    /*代修改*/font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /*代修改*/animation: flicker 0s infinite;
+}
+.site-header ul a:hover {
+    color: #fde047;
+    padding-bottom: 5px;
+    /*代修改*/border-bottom: 0px solid #14d2eb; /* 粗細, 樣式, 顏色 */
+}
+
+/* 隱藏選單按鈕 */
+.menu-toogle {
+    display: none;
+}
+
+/* LOGO 字樣 */
+.logo {
+    font-size: 2.5rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: var(--spacing4);
+}
+
+/* 在 @media 之外掌管桌面顯示， 之內掌管手機顯示 */
+@media screen and (max-width: 768px) {
+    .site-header {
+        display: flex;
+        background-color: red;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* 顯示選單按鈕 */
+    .menu-toogle {
+        display: flex;
+        position: absolute;
+        left: 2rem;
+        font-size: 3rem;
+    }
+
+    /* 隱藏 Header 文字選項容器 */
+    .site-header > ul {
+        display: none;
+    }
+
+    /* 置中 LOGO 字樣 */
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        letter-spacing: normal;
+        /* 底下這 3 個不能刪，因為上面是 flex */
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* 不明所以然的動畫 */
+@keyframes flicker {
+	0%, 19.9%, 22%, 62.9%, 64%, 64.9%, 70%, 100% {
+		opacity: 0.99;
+		text-shadow: 
+			-1px -1px 0 rgba(255,255,255, 0.4), 
+			1px -1px 0 rgba(255,255,255, 0.4), 
+			-1px 1px 0 rgba(255,255,255, 0.4), 
+			1px 1px 0 rgba(255,255,255, 0.4), 
+			0 -1px 3px,
+			0 0 1px,
+			0 0 1px #35e7ff, 
+			0 0 6px #46ffff, 
+			0 0 3px #ff34b1, 
+			0 2px 3px #000;
+	}
+	20%, 21.9%, 63%, 63.9%, 65%, 69.9% {
+		opacity: 0.4;
+		text-shadow: none;
+	}
+}
+
+
+/*
+OK 1. 將 ≡ 從 ::before 改成 button
+OK 2. LOGO 字體無法置中
+OK 3. 去除掉無用的 desktop prefix 
+*/

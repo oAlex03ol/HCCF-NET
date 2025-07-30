@@ -1,0 +1,24 @@
+.Main {
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    align-items: center;
+    /*padding: 0 8px;*/
+}
+
+.site-Main {
+    min-height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border: 2px solid rgb(35, 64, 83);
+    background-color: rgb(53, 88, 88);
+    gap: 2rem;
+}
