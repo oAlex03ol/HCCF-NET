@@ -1,20 +1,20 @@
 import '../styles/Header.css'
 
-export default function Header() {
+{/* onNavigate 為自訂變數，用於選擇頁面 */}
+export default function Header({ onNavigate }) {
   return (
     <header>
         <nav className="w-full" aria-label="Main navigation">
-            {/* Desktop Navigation */}
             <div className="site-header">
                 <button className="menu-toogle"><p>≡</p></button>
                 <div><p className="logo">L O G O</p></div> {/* 這是未來放 LOGO 的地方 */}
                 <ul>
-                    <li><a href="#">首頁</a></li>
-                    <li><a href="#">關於我們</a></li>
-                    <li><a href="#">公開講義</a></li>
-                    <li><a href="#">活動花絮</a></li>
-                    <li><a href="#">榮譽榜</a></li>
-                    <li><a href="#">設定</a></li>
+                    <li><button onClick={()=>onNavigate("Main")}>首頁</button></li>
+                    <li><button onClick={()=>onNavigate("About")}>關於我們</button></li>
+                    <li><button onClick={()=>onNavigate("Course")}>公開講義</button></li>
+                    <li><button onClick={()=>onNavigate("Event")}>活動花絮</button></li>
+                    <li><button onClick={()=>onNavigate("Achievement")}>榮譽榜</button></li>
+                    <li><button >設定</button></li>
                 </ul>
             </div>
         </nav>

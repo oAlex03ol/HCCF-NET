@@ -27,13 +27,13 @@
     align-items: center;
 }
 
-/* 文字選項外框 */
+/* 文字選項外框 
 .site-header ul li {
-    /*border: 2px solid red;*/
-}
+    border: 2px solid red;
+}*/
 
 /* Header 文字選項 */
-.site-header ul a {
+.site-header ul button {
     text-decoration: none;
     color: inherit;
     font-size: 1rem;
@@ -41,9 +41,9 @@
     /*代修改*/font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     /*代修改*/animation: flicker 0s infinite;
 }
-.site-header ul a:hover {
+.site-header ul button:hover {
     color: #fde047;
-    padding-bottom: 5px;
+    /*代修改padding-bottom: 5px;*/
     /*代修改*/border-bottom: 0px solid #14d2eb; /* 粗細, 樣式, 顏色 */
 }
 
