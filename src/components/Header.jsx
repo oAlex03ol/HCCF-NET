@@ -14,7 +14,7 @@ export default function Header({ onNavigate }) {
                     <li><button onClick={()=>onNavigate("Course")}>公開講義</button></li>
                     <li><button onClick={()=>onNavigate("Event")}>活動花絮</button></li>
                     <li><button onClick={()=>onNavigate("Achievement")}>榮譽榜</button></li>
-                    <li><button >設定</button></li>
+                    <li><button>設定</button></li>
                 </ul>
             </div>
         </nav>
