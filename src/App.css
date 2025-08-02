@@ -1,10 +1,31 @@
 /* App.css */
 
 .main-container {
-    display: flex;
-    width: 100vw;
-    flex-direction: column;
+    width: 100%;
     min-height: 100vh;
     box-sizing: border-box;
-    overflow-y: hidden;
+}
+
+/* 效果: 上 -> 下 淡出 */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+}
+
+/* 效果: 右 -> 左 淡出 */
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateX(0);
+  }
 }

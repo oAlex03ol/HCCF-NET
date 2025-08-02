@@ -1,12 +1,13 @@
 /* 
-  index.css 是整個 React + Vite 專案的全域樣式起點。
-  通常會放置全域通用的樣式設定，例如：
-  - 重設瀏覽器預設樣式（reset）
-  - 設定全域字體、背景、排版
-  - 定義 box-sizing 行為
-  - Tailwind 或其他 UI 套件初始化也會依賴這裡
+    index.css 是整個 React + Vite 專案的全域樣式起點。
+    通常會放置全域通用的樣式設定，例如：
+    - 重設瀏覽器預設樣式
+    - 設定全域字體、背景、排版
+    - 定義 box-sizing 行為
+    - Tailwind 或其他 UI 套件初始化也會依賴這裡
 
-  這些樣式會作用於整個網站，確保版面一致與跨瀏覽器穩定。
+    這些樣式會作用於整個網站，確保不同瀏覽器版面一致。
+    注意 : margin, padding 預設為 0 ，需自行設定
 */
 
 
@@ -57,13 +58,7 @@
 }
 
 html, body {
-    margin: 0; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 160px;
     min-height: 100vh;
-    overflow-x: hidden;
 }
 
 h1 {
@@ -76,6 +71,15 @@ a {
     color: #ffffff;
     text-decoration: inherit;
 }
+
+.sticky {
+    position: sticky;
+    top: 0;
+}
+
+
+
+
 /*a:hover {
     color: #fde047;
 }*/

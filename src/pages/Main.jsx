@@ -1,53 +1,16 @@
-import { useEffect } from "react";
+// Main.jsx
+import { useEffect } from 'react';
 import '../styles/Main.css'
+import SmoothScroll from '../utils/smoothScrolling';
 
 function Main() {
-    {/* 這邊需要大修 */}
+    // 套用 smoothScrolling 使得滾動更平滑
     useEffect(() => {
-        const main = document.querySelector(".Main");
-        const sections = main.querySelectorAll(".site-Main");
-        let index = 0;
-        let scrollCount = 0;
-        const scrollThreshold = 2; // 滾動 3 次才觸發
-        let scrollDirection = 0;
-
-        let isScrolling = false;
-
-        const onWheel = (e) => {
-            e.preventDefault();
-
-            const direction = e.deltaY > 0 ? 1 : -1;
-
-            // 不同方向時重置計數器
-            if (direction !== scrollDirection) {
-                scrollCount = 0;
-                scrollDirection = direction;
-            }
-
-                scrollCount++;
-
-            if (scrollCount >= scrollThreshold && !isScrolling) {
-                isScrolling = true;
-
-                if (direction === 1 && index < sections.length - 1) {
-                  index++;
-                } else if (direction === -1 && index > 0) {
-                  index--;
-                }
-
-                sections[index].scrollIntoView({ behavior: "smooth" });
-
-                setTimeout(() => {
-                  isScrolling = false;
-                }, 300); // 解鎖時間
-                scrollCount = 0; // 重置次數
-            }
-        };
-
-        main.addEventListener("wheel", onWheel, { passive: false });
+        SmoothScroll.init({ speed: 100, friction: 0.08 });
+        SmoothScroll.enable();
 
         return () => {
-            main.removeEventListener("wheel", onWheel);
+            SmoothScroll.disable();
         };
     }, []);
     return (
@@ -133,3 +96,65 @@ function Main() {
 }
 
 export default Main;
+
+{/*<main className="Main">
+    <section style={{height: '100vh', background: '#eee'}}>
+        <h1>Section 1</h1>
+    </section>
+    <section style={{height: '100vh', background: '#ccc'}}>
+        <h1>Section 2</h1>
+    </section>
+    <section style={{height: '100vh', background: '#aaa'}}>
+        <h1>Section 3</h1>
+    </section>
+</main>*/}
+
+{/* 先前幻燈片效果
+useEffect(() => {
+    const main = document.querySelector(".Main");
+    const sections = main.querySelectorAll(".site-Main");
+    let index = 0;
+    let scrollCount = 0;
+    const scrollThreshold = 2; // 滾動 3 次才觸發
+    let scrollDirection = 0;
+
+    let isScrolling = false;
+
+    const onWheel = (e) => {
+        e.preventDefault();
+
+        const direction = e.deltaY > 0 ? 1 : -1;
+
+        // 不同方向時重置計數器
+        if (direction !== scrollDirection) {
+            scrollCount = 0;
+            scrollDirection = direction;
+        }
+
+            scrollCount++;
+
+        if (scrollCount >= scrollThreshold && !isScrolling) {
+            isScrolling = true;
+
+            if (direction === 1 && index < sections.length - 1) {
+                index++;
+            } else if (direction === -1 && index > 0) {
+                index--;
+            }
+
+            sections[index].scrollIntoView({ behavior: "smooth" });
+
+            setTimeout(() => {
+                isScrolling = false;
+            }, 300); // 解鎖時間
+            scrollCount = 0; // 重置次數
+        }
+    };
+
+    main.addEventListener("wheel", onWheel, { passive: false });
+
+    return () => {
+        main.removeEventListener("wheel", onWheel);
+    };
+}, []);    
+*/}
