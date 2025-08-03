@@ -30,7 +30,7 @@
 
     color-scheme: light dark; /*讓瀏覽器知道支援亮、暗主題*/
     color: rgba(255, 255, 255, 0.87); /*字體顏色*/
-    background-color: #242424; /*背景顏色*/
+    background-color: #242424; /*背景顏色#242424*/
 
     font-synthesis: none; /*禁止瀏覽器自動合成粗體或斜體*/
     text-rendering: optimizeLegibility; /*優化長文本可讀性*/
@@ -59,6 +59,8 @@
 
 html, body {
     min-height: 100vh;
+    touch-action: manipulation; /* 讓元素只能使用滑動或兩指縮放 */
+    -webkit-text-size-adjust: 100%;
 }
 
 h1 {

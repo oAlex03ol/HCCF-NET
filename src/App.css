@@ -6,26 +6,75 @@
     box-sizing: border-box;
 }
 
+.glow-effect {
+    color: #fff;
+    text-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff;
+}
+
 /* 效果: 上 -> 下 淡出 */
 @keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  100% {
-    opacity: 0.9;
-    transform: translateY(0);
-  }
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 0.9;
+        transform: translateY(0);
+    }
 }
 
 /* 效果: 右 -> 左 淡出 */
 @keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 0.9;
+        transform: translateX(0);
+    }
+}
+
+
+
+
+
+
+
+/* 不明所以然的動畫 */
+@keyframes flicker {
+	0%, 19.9%, 22%, 62.9%, 64%, 64.9%, 70%, 100% {
+		opacity: 0.99;
+		text-shadow: 
+			-1px -1px 0 rgba(255,255,255, 0.4), 
+			1px -1px 0 rgba(255,255,255, 0.4), 
+			-1px 1px 0 rgba(255,255,255, 0.4), 
+			1px 1px 0 rgba(255,255,255, 0.4), 
+			0 -1px 3px,
+			0 0 1px,
+			0 0 1px #35e7ff, 
+			0 0 6px #46ffff, 
+			0 0 3px #ff34b1, 
+			0 2px 3px #000;
+	}
+	20%, 21.9%, 63%, 63.9%, 65%, 69.9% {
+		opacity: 0.4;
+		text-shadow: none;
+	}
+}
+
+@keyframes blinkBackground {
   0% {
-    opacity: 0;
-    transform: translateX(100px);
+    background-color: #f700ff; /* 紅色 */
+  }
+  50% {
+    background-color: #a400b3; /* 黑色 */
   }
   100% {
-    opacity: 0.9;
-    transform: translateX(0);
+    background-color: #f700ff; /* 回到紅色 */
   }
 }

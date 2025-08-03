@@ -8,11 +8,13 @@ import About from "./pages/About";
 import Course from "./pages/Course";
 import Event from "./pages/Event";
 import Achievement from "./pages/Achievement";
+import Debug from "./pages/Debug";
 
 // 共用元件
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Setting from "./features/Setting"
+//import Notification from "./components/test"
 
 // HOOK
 import { usePageLoaded } from "./utils/usePageLoaded";
@@ -32,6 +34,7 @@ function App() {
             case "Course": return <Course />
             case "Event": return <Event />
             case "Achievement": return <Achievement />
+            case "Debug": return <Debug />
             // 找不到對應頁面 -> 顯示錯誤訊息
             default: return <div className="bg-black justify-center item-center"><h1>頁面不存在</h1></div>;
         }
@@ -47,6 +50,7 @@ function App() {
                 <title>HCCF main page</title>
                 <link rel="icon" href="./public/vite.svg" />
                 <meta name="description" content="This is the HCCF official website made by React app." />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             </Helmet>
 
             {/* 主容器，包住整體網頁的結構 */}

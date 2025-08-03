@@ -44,7 +44,7 @@ function Main() {
 
                     <section >
                         <h2 className="!text-gray-600 text-2xl font-semibold mb-6 tracking-wide border-b border-gray-300 pb-2">
-                            重要檔案 :
+                            重要檔案 : 
                         </h2>
                         <dl className="space-y-6">
                             <div>
