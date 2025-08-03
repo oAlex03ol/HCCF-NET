@@ -4,7 +4,7 @@ const SmoothScroll = {
     current: 0, // 當前滾動位置
     target: 0,  // 目標滾動位置 (即時更新)
     isScrolling: false, // 是否正在執行動畫
-    speed: 80,  // 滾動時的速度倍率
+    speed: 30,  // 滾動時的速度倍率
     friction: 0.5,  // 滾動時的摩擦力（值越小越滑順）
     active: false,  // 是否已啟用 SmoothScroll
 
@@ -33,7 +33,7 @@ const SmoothScroll = {
     // 實作了 摩擦力 的平滑滾動效果，距離越近移動越慢。
     animateScroll() {
         const delta = this.target - this.current;   // 計算還有多少距離沒移動
-        this.current += delta * this.friction;      // current 以摩擦力為比例慢慢逼近 target
+        this.current += delta * this.friction / 1.5 ;      // current 以摩擦力為比例慢慢逼近 target
         window.scrollTo(0, this.current);           // 讓畫面滾動到 current 位置
 
         if (Math.abs(delta) > 0.5) {    // 如果距離超過 0.5 還沒到目標，就繼續滾動
