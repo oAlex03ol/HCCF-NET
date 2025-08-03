@@ -18,6 +18,7 @@ export default function Header({ onNavigate, isPageLoaded }) {
                 <li><button onClick={()=>onNavigate("Event")}>活動花絮</button></li>
                 <li><button onClick={()=>onNavigate("Achievement")}>榮譽榜</button></li>
                 <li><button onClick={openSettingsPanel}>設定</button></li>
+                <li><button onClick={()=>onNavigate("Debug")}>DEBUG</button></li>
             </ul>
         </header>
     );

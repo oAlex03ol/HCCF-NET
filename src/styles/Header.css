@@ -25,6 +25,8 @@
     justify-content: space-around;
     align-items: center;
     overflow-x: hidden;
+    overflow-y: hidden;
+    height: 2.5rem;
 }
 
 /* Header 文字選項 */
@@ -32,15 +34,20 @@
     text-decoration: none;
     color: inherit;
     font-size: 1rem;
-    /*代修改*/transition: color 0.2s ;
+    /*border: 2px solid #14d2eb;*/
+    /*代修改*/transition: color 0.2s, transform 0.2s;
     /*代修改*/font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     /*代修改*/animation: flicker 0s infinite;
 }
-.site-header ul button:hover {
+.site-header li button:hover {
     color: #fde047;
-    /*代修改padding-bottom: 5px;*/
-    /*代修改*/border-bottom: 0px solid #14d2eb; /* 粗細, 樣式, 顏色 */
+    transform: translateY(-5px);
 }
+.site-header ul button:active {
+    opacity: 0.7;
+    transform: translateY(0px);
+}
+
 
 /* 隱藏選單按鈕 */
 .menu-toogle {
@@ -58,7 +65,7 @@
 }
 
 /* 在 @media 之外掌管桌面顯示， 之內掌管手機顯示 */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) { /* 768px */
     .site-header {
         display: flex;
         background-color: #AA4465;
@@ -111,25 +118,4 @@
 .opening-animation-second li:nth-child(4) { animation-delay: 0.8s; }
 .opening-animation-second li:nth-child(5) { animation-delay: 0.9s; }
 .opening-animation-second li:nth-child(6) { animation-delay: 1.0s; }
-
-/* 不明所以然的動畫 */
-@keyframes flicker {
-	0%, 19.9%, 22%, 62.9%, 64%, 64.9%, 70%, 100% {
-		opacity: 0.99;
-		text-shadow: 
-			-1px -1px 0 rgba(255,255,255, 0.4), 
-			1px -1px 0 rgba(255,255,255, 0.4), 
-			-1px 1px 0 rgba(255,255,255, 0.4), 
-			1px 1px 0 rgba(255,255,255, 0.4), 
-			0 -1px 3px,
-			0 0 1px,
-			0 0 1px #35e7ff, 
-			0 0 6px #46ffff, 
-			0 0 3px #ff34b1, 
-			0 2px 3px #000;
-	}
-	20%, 21.9%, 63%, 63.9%, 65%, 69.9% {
-		opacity: 0.4;
-		text-shadow: none;
-	}
-}
+.opening-animation-second li:nth-child(7) { animation-delay: 1.1s; }
