@@ -22,6 +22,10 @@ import { usePageLoaded } from "./utils/usePageLoaded";
 // 全域樣式
 import "./App.css";
 
+//這是...用來載入模型的
+import ModelViewer from './components/ModelViewer';
+import { Suspense } from 'react';
+
 function App() {
     // 定義 currentPage 為函數 setCurrentPage 的變數，用於選擇頁面 (初始化為 Main頁面)
     const [currentPage, setCurrentPage] = useState("Main");
@@ -48,19 +52,35 @@ function App() {
             {/* 設定 <head> 的標籤：標題、描述、icon 等 */}
             <Helmet>
                 <title>HCCF main page</title>
-                <link rel="icon" href="./public/vite.svg" />
+                {/* 稍微修正一下 icon 路徑，Vite 習慣直接寫 /vite.svg */}
+                <link rel="icon" href="/vite.svg" />
                 <meta name="description" content="This is the HCCF official website made by React app." />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             </Helmet>
 
-            {/* 主容器，包住整體網頁的結構 */}
+            {/* 1. 原有的主容器：完全保留 */}
             <div className="main-container">
                 <p className="text-center">測試 Header 是否套用 Sticky 屬性成功附著在頂端，或許之後可以變成小通知 (待刪) </p>
                 <Header onNavigate={setCurrentPage} isPageLoaded={isPageLoaded} /> {/* 上方導航列 */}
                 {renderPage()} {/* 頁面渲染處 */}
                 <Footer /> {/* 頁尾 */}
             </div>
-            <Setting /> {/* 設定面板 */}
+
+            {/* 2. 原有的設定面板：完全保留 */}
+            <Setting /> 
+
+            {/* 3. 新增的模型元件：放在最後面，確保浮在最上方 */}
+            <Suspense fallback={
+                <div style={{ 
+                    position: 'fixed', bottom: '20px', right: '20px', 
+                    color: 'white', background: 'rgba(0,0,0,0.5)', 
+                    padding: '10px', zIndex: 10000 
+                }}>
+                    模型載入中 (42MB)...
+                </div>
+            }> 
+                <ModelViewer />
+            </Suspense>
         </>
     );
 }

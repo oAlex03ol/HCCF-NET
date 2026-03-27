@@ -40,6 +40,9 @@ function Main() {
                         <li>
                         <span className="font-semibold !text-gray-600">pages 資料夾:</span> 將大頁面歸類
                         </li>
+                        <li>
+                        <span className="font-semibold !text-gray-600">models 資料夾:</span> 存放 3D 模型文件，附屬於public (卡巴卡馬加的)
+                        </li>
                     </ul>
 
                     <section >
