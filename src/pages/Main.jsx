@@ -16,11 +16,25 @@ function Main() {
     return (
         <>
             <main className="Main">
-                <section className="site-Main !bg-[#CDEAC0]">
+                <section className="site-Main">
                     <h1 className="text-4xl font-bold !text-gray-600">首頁</h1>
 
+
+                    <p className="!text-yellow-400 text-lg max-w-xl text-center">
+                        目前工作項目 : 題庫檢索 ↗
+                    </p>
+                    <p className="!text-gray-600 text-lg max-w-xl text-left">
+                        題庫檢索還有許多功能還未完成，比如說: 
+                    </p>
+                    <p className="!text-gray-600 text-lg max-w-xl text-left">
+                        過場初始動畫、搜尋加載中動畫、不同解題網站切換按鈕、按照難度排序按鈕、按照題號排序按鈕、依照標籤切換下拉選單 (已解決:分類動畫)
+                    </p>
+                    <p className="!text-gray-600 text-lg max-w-xl text-left">
+                        目前只是確定網頁風格而已
+                    </p>
+
                     <p className="!text-gray-600 text-lg max-w-xl text-center">
-                        在這邊先簡單介紹一下網頁是怎麼分類的
+                        在這邊先簡單介紹一下此專案程式碼是如何分類的
                     </p>
 
                     <ul className="list-disc list-inside space-y-2 !text-gray-600 max-w-xl text-left">
@@ -70,24 +84,24 @@ function Main() {
                 </section>
                 
                 <section className="site-Main !bg-[#EFE9AE] !text-gray-600">
+                    <h1>題庫檢索</h1>
+                    <p>1. </p>
+                </section>
+            
+            
+                <section className="site-Main !bg-[#FEC3A6] !text-gray-600">
                     <h1>關於我們</h1>
                     <p>Never Gonna Give You Up! never gonna let you down ! never gonna run around and desert you</p>
                 </section>
             
             
-                <section className="site-Main !bg-[#FEC3A6] !text-gray-600">
+                <section className="site-Main !bg-[#FFAC81] !text-gray-600">
                     <h1>公開講義</h1>
                     <p>Never Gonna Give You Up! never gonna let you down ! never gonna run around and desert you</p>
                 </section>
             
-            
-                <section className="site-Main !bg-[#FFAC81] !text-gray-600">
-                    <h1>活動花絮</h1>
-                    <p>Never Gonna Give You Up! never gonna let you down ! never gonna run around and desert you</p>
-                </section>
-            
                 <section className="site-Main !bg-[#FF928B] !text-gray-600">
-                    <h1>榮譽榜</h1>
+                    <h1>DC機器人</h1>
                     <p>Never Gonna Give You Up! never gonna let you down ! never gonna run around and desert you</p>
                 </section>
             </main>

@@ -26,11 +26,11 @@
 :root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; /*字形*/
     line-height: 1.5; /*字體行高*/
-    font-weight: 400; /*字體粗度*/
+    font-weight: 500; /*字體粗度*/
 
     color-scheme: light dark; /*讓瀏覽器知道支援亮、暗主題*/
-    color: rgba(255, 255, 255, 0.87); /*字體顏色*/
-    background-color: #242424; /*背景顏色#242424*/
+    color: rgba(255, 255, 255, 1); /*字體顏色*/
+    background-color: #0f172a; /*背景顏色*/
 
     font-synthesis: none; /*禁止瀏覽器自動合成粗體或斜體*/
     text-rendering: optimizeLegibility; /*優化長文本可讀性*/
@@ -41,6 +41,7 @@
     /*可輕鬆應用於 margin 或 padding 避免日後需依次修改各個元素*/
     --spacing1: 4px;
     --spacing2: 8px;
+    --spacing2-5: 12px;
     --spacing3: 16px;
     --spacing4: 20px;
     --spacing5: 40px;
@@ -53,8 +54,17 @@
     --h1: 600 3rem/1.2em var(--f2);
     --h2: 600 2rem/1.2em var(--f2);
 
-    --background-color: #1ca1ca;
-    --color: #ffffff;
+    --MainColor: #0F172A; 
+    --primary: #c084fc;
+    --secondary: #a78bfa;
+    --cyan-custom: #67e8f9;
+    --purple-custom: #a78bfa;
+    --green-custom: #86efac;
+    --accent: #fbbf24;
+    --big-card: #1e293b ;
+    --shadow-glow: 0 0 30px rgba(192, 132, 252, 0.3);
+    --blob-purple: rgba(192, 132, 252, 0.4);
+    --blob-cyan: rgba(103, 232, 249, 0.3);
 }
 
 html, body {
@@ -79,7 +89,10 @@ a {
     top: 0;
 }
 
-
+.upper-text {
+    display: none;
+    text-align: center;
+}
 
 
 /*a:hover {

@@ -1,0 +1,398 @@
+.search-container {
+    height: auto;
+    width: 90%;
+    max-width: 1920px;
+    min-height: 76vh;
+    font-size: var(--spacing3);
+    background-color: var(--MainColor);
+    margin: 50px auto;
+    padding: 40px;
+    padding-bottom: 0;
+    /* 若想將此處設有blur，須將底部的計數 div 容器移至最外層 react return 之內，以 <></> 包裹 */
+    /*backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(1px);*/
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4), 0 10px 15px rgba(0, 0, 0, 0.3);
+    /*background-color: var(--big-card);*/
+}
+
+.search-bar-text {
+    display: block;
+    font-size: var(--spacing2-5);
+    color: #94aed2;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    margin-left: 0.25rem;
+}
+
+/* 絕對定位的參考點 */
+.search-input-wrapper {
+    position: relative; 
+    width: 100%;
+}
+
+.search-input {
+    /* 尺寸與內距 */
+    width: 100%;           /* w-full */
+    padding-left: 3rem;    /* pl-12 */
+    padding-right: 1rem;   /* pr-4 */
+    padding-top: 0.75rem;  /* py-3 */
+    padding-bottom: 0.75rem;/* py-3 */
+
+    /* 背景與邊框 */
+    background-color: rgba(255, 255, 255, 0.05); /* bg-white/5 */
+    border-width: 1px;                            /* border */
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.1);      /* border-white/10 */
+    border-radius: 1rem;                          /* rounded-2xl */
+
+    /* 文字樣式 */
+    color: #e2e8f0;       /* text-slate-200 */
+    font-family: sans-serif; /* font-sans */
+    font-size: 1rem;
+
+    /* 動畫與過渡 */
+    transition-property: all; 
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+}
+
+/* focus 狀態 */
+.search-input:focus {
+    caret-color: #c084fc;
+    outline: none;                       /* focus:outline-none */
+    border-color: #c084fc; /* focus:border-primary/50 */
+    box-shadow: 0 0 0 1px rgba(192, 132, 252, 0.2); /* focus:ring-1 + focus:ring-primary/20 */
+}
+
+.search-icon {
+    width: 18px ;
+    height: 18px;
+    position: absolute;
+    pointer-events: none;
+    left: 15px;
+    top: 25px;
+    transform: translateY(-50%);
+    color: #64748b; /* slate-500 */
+    transition: color 0.2s ease;
+    pointer-events: none; /* 讓點擊穿透到 input */
+}
+
+.search-input-wrapper:has(.search-input:focus) .search-icon {
+    color: #c084fc; /* 與 input focus 顏色一致 */
+}
+
+
+.search-card {
+    border-radius: 20px;
+    overflow: hidden;
+    /*box-shadow: 0 0 40px rgba(0, 0, 0, 0.4), 0 10px 15px rgba(0, 0, 0, 0.3);*/
+    margin-top: 2rem;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;  
+}
+
+.search-list-wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.stars-wrapper {
+    display: flex;
+    gap: 0.25rem;
+    justify-content: center;
+}
+
+.stars-wrapper svg {
+    flex-shrink: 1;
+}
+
+.star-off {
+    font-size: 0.75rem;
+    color: #334155; /* 灰色未點亮 */
+}
+
+.star {
+    transition: color 0.2s, filter 0.2s;
+}
+
+.star-1 { color: #a6ff79; /* 綠色 */ filter: drop-shadow(0 0 4px #6ceec399); }
+.star-2 { color: var(--cyan-custom); /* 淺藍 */ filter: drop-shadow(0 0 4px #3b82f699); }
+.star-3 { color: var(--accent); /* 黃色 */ filter: drop-shadow(0 0 4px #facc1599); }
+.star-4 { color: #F0A202; /* 橘色 */ filter: drop-shadow(0 0 4px #f9731699); }
+.star-5 { color: rgb(251 113 133 / var(--tw-text-opacity, 1)); /* 紅色 */ filter: drop-shadow(0 0 4px #ef444499); }
+
+.problem-info {
+    grid-column: span 7;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;     /* 非常重要 */
+}
+
+.problem-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-x: auto;      /* 水平滾動 */
+    scrollbar-width: thin; /* Firefox */
+    -webkit-overflow-scrolling: touch; /* iOS 平滑滾動 */
+    padding-bottom: 4px; 
+}
+
+.problem-title svg {
+    flex-shrink: 0;   /* icon 不縮小 */
+}
+
+.problem-text {
+    flex-shrink: 0;
+}
+
+
+.problem-row:hover .problem-row-selected {
+    height: 12px;
+    width: 12px;
+    opacity: 1;
+    color: #c084fc;
+    filter: drop-shadow(0 0 4px #c084fc)
+            drop-shadow(0 0 10px #a855f7);
+}
+
+.problem-id {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    color: rgb(192 132 252 / var(--tw-text-opacity, 1));
+    background-color: rgba(167, 139, 250, 0.1);
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.problem-row {
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.problem-link {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+/*-----------------------------------------------------------------*/
+
+#stats-container{
+    position: sticky;
+    bottom: 30px;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+}
+
+.problem-row:hover {
+    background: rgba(255,255,255,0.03);
+}
+
+/* 打勾按鈕 */
+.toggle-btn {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 2px solid #0ea5e9; /* 藍色邊框 */
+    background-color: rgba(14, 165, 233, 0.1);
+    color: #0ea5e9;
+    font-weight: bold;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(14,165,233,0); /* 初始沒有 glow */
+    transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+    box-shadow: 0 0 12px rgba(14,165,233,0.6);
+}
+
+.toggle-btn:active {
+    transform: scale(0.9);
+}
+
+.toggle-btn:focus {
+    outline: none;
+    box-shadow: 0 0 12px rgba(14,165,233,0.6);
+}
+
+/* 啟用狀態的藍色發光 */
+.toggle-btn.active {
+    background-color: #0ea5e9;
+    color: white;
+    box-shadow: 0 0 12px rgba(14,165,233,0.8);
+}
+
+/* 問題內容 / ID */
+
+/* 星星 */
+
+
+/* Tags */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.25rem;
+}
+
+.tag {
+    display: flex;
+    font-size: 0.625rem;
+    padding: 0.2rem 0.3rem;
+    background-color: rgba(30,41,59,0.8);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 0.5rem;
+    color: #94a3b8;
+}
+
+/* Stats */
+.stats-card {
+    background: rgba(30,41,59,0.5);
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    display: flex;
+    position: sticky;
+    bottom: 30px;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2);
+}
+
+.stats-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0ea5e9;
+}
+
+.stats-label {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+/* 空列表 */
+.empty {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.fuck {
+    background-color: rgba(255,255,255,0.03);
+    margin: 2rem ;
+    padding: 20px 30px;
+    --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
+    border-width: 1px;                            /* border */
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.1);      /* border-white/10 */
+    border-radius: 1rem;
+    
+    flex-shrink: 0;
+}
+
+.no-result {
+    padding: 40px;
+    min-height: 380px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.sticky-effect {
+    position: sticky;
+}
+
+
+
+/*
+全域 border
+
+border-width: 1px;                           
+border-style: solid;
+border-color: rgba(255, 255, 255, 0.1);
+border-radius: 1rem; 
+
+*/
+
+@media screen and (max-width: 798px) {
+    .search-container {
+        width: 100%;
+        padding: 30px 20px;
+        backdrop-filter: blur(2000px);
+        -webkit-backdrop-filter: blur(2000px);
+    }
+
+    .search-list-wrapper {
+        padding: 10px 20px;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .search-list-wrapper p:nth-child(1) {grid-column: span 1;}
+    .search-list-wrapper p:nth-child(2) {grid-column: span 4;}
+    .search-list-wrapper p:nth-child(3) {grid-column: span 1;}
+    .search-list-wrapper p:nth-child(4) {display: none;}
+
+    .problem-row {
+        padding: 10px 20px;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .problem-row > div:nth-of-type(1) {
+        grid-column: span 1;
+    }
+
+    /* 2️⃣ 題目內容 */
+    .problem-row > .problem-info {
+        grid-column: span 4;
+    }
+
+    /* 3️⃣ 困難度 */
+    .problem-row > .difficulty {
+        grid-column: span 1;
+    }
+
+    .problem-row > .tags {
+        display: none;
+    }
+
+    
+}
+
+

@@ -1,4 +1,3 @@
-/* Setting.jsx */
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -14,66 +13,98 @@ export default function SettingPanel() {
   const [language, setLanguage] = useState('zh-TW');
   const [notifications, setNotifications] = useState(true);
 
+  // 註冊開啟函式
   useEffect(() => {
     externalOpen = () => setIsOpen(true);
-    return () => (externalOpen = null);
+    return () => { externalOpen = null; };
   }, []);
+
+  // 控制背景不滾動
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
   const closePanel = () => setIsOpen(false);
 
   return createPortal(
-    <div className="!fixed !inset-0 !z-50 !flex !items-center !justify-center !p-4 !m-0" >
-      {/* Overlay */}
+    <div
+      style={{
+        position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        display: 'flex', justifyContent: 'center', alignItems: 'center',
+        zIndex: 10000,
+      }}
+      onClick={closePanel}
+    >
+      {/* 阻止背後內容互動 */}
       <div
-        className="absolute inset-0 bg-opacity-50"
-        onClick={closePanel}
+        style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          cursor: 'default'
+        }}
       />
 
-      {/* Modal */}
-      <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-lg p-6 mx-4">
+      {/* Modal Container */}
+      <div
+        style={{
+          position: 'relative',
+          width: '600px', maxWidth: '90vw',
+          backgroundColor: darkMode ? '#2c2f33' : '#f9f9f9',
+          color: darkMode ? '#eaeaea' : '#222222',
+          borderRadius: '12px',
+          padding: '24px',
+          boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
+          fontFamily: 'Arial, sans-serif',
+        }}
+        onClick={e => e.stopPropagation()}
+      >
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Settings (排版爛掉) </h2>
-          <button onClick={closePanel} className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
-            ×
-          </button>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 'bold' }}>Settings(還不能交互)</h2>
+          <button onClick={closePanel} style={{
+            background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#888',
+          }}>×</button>
         </div>
 
         {/* Content */}
-        <div className="space-y-6">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {/* Dark Mode Toggle */}
-          <div className="flex items-center justify-between">
-            <span className="text-gray-700 dark:text-gray-200">Dark Mode</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span>Dark Mode</span>
             <input
               type="checkbox"
               checked={darkMode}
               onChange={() => setDarkMode(prev => !prev)}
-              className="h-5 w-5 rounded border border-gray-300 dark:border-gray-600 text-blue-600 focus:ring-blue-500"
+              style={{ width: '20px', height: '20px', cursor: 'pointer' }}
             />
           </div>
 
           {/* Font Size Slider */}
           <div>
-            <label className="block text-gray-700 dark:text-gray-200 mb-2">Font Size: {fontSize}px</label>
+            <label style={{ display: 'block', marginBottom: '8px' }}>Font Size: {fontSize}px</label>
             <input
               type="range"
               min="12"
               max="24"
               value={fontSize}
               onChange={e => setFontSize(Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none dark:bg-gray-700"
+              style={{ width: '100%' }}
             />
           </div>
 
           {/* Language Select */}
           <div>
-            <label className="block text-gray-700 dark:text-gray-200 mb-2">Language</label>
+            <label style={{ display: 'block', marginBottom: '8px' }}>Language</label>
             <select
               value={language}
               onChange={e => setLanguage(e.target.value)}
-              className="w-full py-2 px-3 border border-gray-300 rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
             >
               <option value="zh-TW">中文 (繁體)</option>
               <option value="en-US">English</option>
@@ -82,34 +113,27 @@ export default function SettingPanel() {
           </div>
 
           {/* Notifications Toggle */}
-          <div className="flex items-center justify-between">
-            <span className="text-gray-700 dark:text-gray-200">Notifications</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span>Notifications</span>
             <input
               type="checkbox"
               checked={notifications}
               onChange={() => setNotifications(prev => !prev)}
-              className="h-5 w-5 rounded border border-gray-300 dark:border-gray-600 text-blue-600 focus:ring-blue-500"
+              style={{ width: '20px', height: '20px', cursor: 'pointer' }}
             />
           </div>
         </div>
 
         {/* Footer */}
-        <div className="mt-8 flex justify-end space-x-4">
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
           <button
             onClick={closePanel}
-            className="px-5 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none"
-          >
-            Cancel
-          </button>
+            style={{ padding: '8px 16px', borderRadius: '6px', border: '1px solid #aaa', background: darkMode ? '#444' : '#e0e0e0', cursor: 'pointer' }}
+          >Cancel</button>
           <button
-            onClick={() => {
-              // TODO: Persist settings
-              closePanel();
-            }}
-            className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none"
-          >
-            Save
-          </button>
+            onClick={() => { /* TODO: Persist settings */ closePanel(); }}
+            style={{ padding: '8px 16px', borderRadius: '6px', border: 'none', background: '#007bff', color: '#fff', cursor: 'pointer' }}
+          >Save</button>
         </div>
       </div>
     </div>,
