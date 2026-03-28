@@ -1,5 +1,4 @@
 /* App.jsx */
-import { Helmet } from "react-helmet"; // 用於設定 head 中的標籤 (但已不是用於 React19，需換掉)
 import { useState } from "react";
 
 // 各個大頁面元件
@@ -8,13 +7,13 @@ import About from "./pages/About";
 import Course from "./pages/Course";
 import Event from "./pages/Event";
 import Achievement from "./pages/Achievement";
-import Debug from "./pages/Debug";
+import ProblemSearch from "./pages/ProblemSearch";
 
 // 共用元件
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Setting from "./features/Setting"
-//import Notification from "./components/test"
+import Debug from "./features/Debug";
 
 // HOOK
 import { usePageLoaded } from "./utils/usePageLoaded";
@@ -38,7 +37,7 @@ function App() {
             case "Course": return <Course />
             case "Event": return <Event />
             case "Achievement": return <Achievement />
-            case "Debug": return <Debug />
+            case "ProblemSearch": return <ProblemSearch />
             // 找不到對應頁面 -> 顯示錯誤訊息
             default: return <div className="bg-black justify-center item-center"><h1>頁面不存在</h1></div>;
         }
@@ -49,27 +48,29 @@ function App() {
 
     return (
         <>
-            {/* 設定 <head> 的標籤：標題、描述、icon 等 */}
-            <Helmet>
+            {/* 主容器，包住整體網頁的結構 */}
+            <div className="main-container">
+                {/* 網格、光暈背景 */}
+                <div className="background-grid-effect"></div>
+                <div className="glow-blob bg-[var(--blob-purple)] w-[600px] h-[600px] -top-48 -left-24"></div>
+                <div className="glow-blob bg-[var(--blob-cyan)] w-[600px] h-[600px] -bottom-48 -right-24"></div>
+
+                {/* 設定 <head> 的標籤：標題、描述、icon 等 */}
                 <title>HCCF main page</title>
                 {/* 稍微修正一下 icon 路徑，Vite 習慣直接寫 /vite.svg */}
                 <link rel="icon" href="/vite.svg" />
                 <meta name="description" content="This is the HCCF official website made by React app." />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            </Helmet>
 
-            {/* 1. 原有的主容器：完全保留 */}
-            <div className="main-container">
-                <p className="text-center">測試 Header 是否套用 Sticky 屬性成功附著在頂端，或許之後可以變成小通知 (待刪) </p>
+                <p className="upper-text">測試 Header 是否套用 Sticky 屬性成功附著在頂端，或許之後可以變成小通知 (待刪) </p>
                 <Header onNavigate={setCurrentPage} isPageLoaded={isPageLoaded} /> {/* 上方導航列 */}
                 {renderPage()} {/* 頁面渲染處 */}
                 <Footer /> {/* 頁尾 */}
             </div>
 
-            {/* 2. 原有的設定面板：完全保留 */}
-            <Setting /> 
+            <Setting /> {/* 設定面板 */}
+            <Debug />   {/* 除錯面板 */}
 
-            {/* 3. 新增的模型元件：放在最後面，確保浮在最上方 */}
+            {/* 新增的模型元件：放在最後面，確保浮在最上方 */}
             <Suspense fallback={
                 <div style={{ 
                     position: 'fixed', bottom: '20px', right: '20px', 

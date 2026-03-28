@@ -1,4 +1,5 @@
 .Main {
+    opacity: 1;
     height: auto;
     width: 100%;
     /*padding: 0 8px;*/
@@ -14,6 +15,5 @@
     align-items: center;
     padding: 2rem;
     border-bottom: 3px solid rgb(35, 64, 83);
-    background-color: rgb(53, 88, 88);
     gap: 2rem;
 }
